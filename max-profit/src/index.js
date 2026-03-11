@@ -2,6 +2,11 @@ function calculateMaxProfit(n) {
     let maxProfit = 0;
     let bestMix = [];
 
+    // Handled a edgecase
+    if (n <= 0) {
+        return { maxProfit: 0, bestMix: [] };
+    }
+
     for (let t = 0; t <= Math.floor(n / 5); t++) {
         for (let p = 0; p <= Math.floor(n / 4); p++) {
             for (let c = 0; c <= Math.floor(n / 10); c++) {
@@ -9,8 +14,11 @@ function calculateMaxProfit(n) {
                 const totalBuildTime = (5 * t) + (4 * p) + (10 * c);
                 if (totalBuildTime > n) continue;
 
-                let currentTime = 0;
-                let profit = 0;
+                    let currentTime = 0;
+
+                    let profit = 0;
+
+
 
                 // Theatres
                 for (let i = 0; i < t; i++) {
@@ -47,10 +55,10 @@ function calculateMaxProfit(n) {
 //usage
 const inputTime = 13;
 const result = calculateMaxProfit(inputTime);
-console.log("Time Unit:", inputTime);
+// console.log("Time Unit:", inputTime);
 console.log("Earnings: $" + result.maxProfit);
 console.log("Solutions:");
 result.bestMix.sort((a, b) => b.T - a.T); // reodered as per document's output
-result.bestMix.forEach(mix => {
-    console.log(`T:${mix.T} P:${mix.P} C:${mix.C}`);
+result.bestMix.forEach((mix, i) => {
+    console.log(`${i + 1}. T:${mix.T} P:${mix.P} C:${mix.C}`);
 });
