@@ -1,0 +1,11 @@
+{
+  "name": "max-profit-problem",
+  "version": "1.0.0",
+  "description": "Max Profit Node.js Solution",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Fakrudeen PK",
+  "license": "ISC"
+}
