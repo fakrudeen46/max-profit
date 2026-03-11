@@ -1,6 +1,6 @@
 function calculateMaxProfit(n) {
     let maxProfit = 0;
-    let bestMix = { T: 0, P: 0, C: 0 };
+    let bestMix = [];
 
     for (let t = 0; t <= Math.floor(n / 5); t++) {
         for (let p = 0; p <= Math.floor(n / 4); p++) {
@@ -32,7 +32,10 @@ function calculateMaxProfit(n) {
 
                 if (profit > maxProfit) {
                     maxProfit = profit;
-                    bestMix = { T: t, P: p, C: c };
+                    bestMix = [{ T: t, P: p, C: c }];
+                } 
+                else if (profit === maxProfit && profit !== 0) {
+                    bestMix.push({ T: t, P: p, C: c });
                 }
             }
         }
@@ -42,8 +45,12 @@ function calculateMaxProfit(n) {
 }
 
 //usage
-const inputTime = 7;
+const inputTime = 13;
 const result = calculateMaxProfit(inputTime);
-console.log("Input Time:", inputTime);
-console.log("Max Profit: $" + result.maxProfit);
-console.log(`T:${result.bestMix.T} P:${result.bestMix.P} C:${result.bestMix.C}`);
+console.log("Time Unit:", inputTime);
+console.log("Earnings: $" + result.maxProfit);
+console.log("Solutions:");
+result.bestMix.sort((a, b) => b.T - a.T); // reodered as per document's output
+result.bestMix.forEach(mix => {
+    console.log(`T:${mix.T} P:${mix.P} C:${mix.C}`);
+});
