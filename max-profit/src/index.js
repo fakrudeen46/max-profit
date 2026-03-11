@@ -43,7 +43,17 @@ function calculateMaxProfit(n) {
                     bestMix = [{ T: t, P: p, C: c }];
                 } 
                 else if (profit === maxProfit && profit !== 0) {
-                    bestMix.push({ T: t, P: p, C: c });
+
+                    const currentTotalTime = (5 * t) + (4 * p) + (10 * c);
+
+                    const bestTotalTime =
+                        (5 * bestMix[0].T) +
+                        (4 * bestMix[0].P) +
+                        (10 * bestMix[0].C);
+
+                    if (currentTotalTime > bestTotalTime) {
+                        bestMix = [{ T: t, P: p, C: c }];
+                    }
                 }
             }
         }
@@ -53,7 +63,7 @@ function calculateMaxProfit(n) {
 }
 
 //usage
-const inputTime = 13;
+const inputTime = 49;
 const result = calculateMaxProfit(inputTime);
 // console.log("Time Unit:", inputTime);
 console.log("Earnings: $" + result.maxProfit);
